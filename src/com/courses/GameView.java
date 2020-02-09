@@ -32,9 +32,9 @@ public class GameView {
         System.out.println("Correct number is: " + number);
     }
 
-    public void outOfAttempts(ArrayList<Integer> attempts){
+    public void outOfAttempts(ArrayList<String> attempts){
         System.out.println("All attempts is: ");
-        for(Integer attemp : attempts)
+        for(String attemp : attempts)
             System.out.print(" " + attemp + " ");
 
     }

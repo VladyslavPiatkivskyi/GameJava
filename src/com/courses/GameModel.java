@@ -10,7 +10,7 @@ public class GameModel {
     private int min;
     private int max;
     private int playerNumber;
-    private ArrayList <Integer> attempts = new ArrayList<>();
+    private ArrayList <String> attempts = new ArrayList<>();
 
     public void insertNumber() {
         this.number = rand(min,max);
@@ -46,7 +46,11 @@ public class GameModel {
     }
 
     public void addAttempts(){
-        attempts.add(playerNumber);
+        attempts.add(String.valueOf(playerNumber));
+    }
+
+    public void addAttempts(String attemp){
+        attempts.add(attemp);
     }
 
     public int getPlayerNumber() {
@@ -77,11 +81,11 @@ public class GameModel {
         this.max = max;
     }
 
-    public ArrayList<Integer> getAttempts() {
+    public ArrayList<String> getAttempts() {
         return attempts;
     }
 
-    public void setAttempts(ArrayList<Integer> attempts) {
+    public void setAttempts(ArrayList<String> attempts) {
         this.attempts = attempts;
     }
 }
