@@ -43,7 +43,6 @@ public class GameModel {
             max = playerNumber;
         else
             min = playerNumber;
-        System.out.println("new dimension is: " + min + " - " + max);
     }
 
     public void addAttempts(){

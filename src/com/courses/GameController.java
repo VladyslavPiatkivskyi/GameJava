@@ -29,35 +29,41 @@ public class GameController {
 
             try {
                 gameModelodel.setPlayerNumber(Integer.parseInt(String.valueOf(bufferedReader.readLine())));
+                checking();
             } catch (Exception e) {
                 gameViewiew.incorrectInput();
                 readInputNumber();
             }
 
-            if(!gameModelodel.checkCorrection()) {
-                gameModelodel.addAttempts();
-                gameViewiew.outOfBound();
-                readInputNumber();
-            }
-            else {
-                if (!gameModelodel.checkEquality()) {
-                    gameModelodel.addAttempts();
-                    gameViewiew.printContinue();
-                    gameModelodel.newDimensions();
-                    outDimensions();
-                    readInputNumber();
-                }
-                else {
-                    gameModelodel.addAttempts();
-                    gameViewiew.printEnd(gameModelodel.getPlayerNumber());
-                    gameViewiew.outOfAttempts(gameModelodel.getAttempts());
-                }
-            }
     }
 
     public void outDimensions(){
 
         gameViewiew.printDimensions(gameModelodel.getMin(), gameModelodel.getMax());
+
+    }
+
+    public void checking(){
+
+        if(!gameModelodel.checkCorrection()) {
+            gameModelodel.addAttempts();
+            gameViewiew.outOfBound();
+            readInputNumber();
+        }
+        else {
+            if (!gameModelodel.checkEquality()) {
+                gameModelodel.addAttempts();
+                gameViewiew.printContinue();
+                gameModelodel.newDimensions();
+                outDimensions();
+                readInputNumber();
+            }
+            else {
+                gameModelodel.addAttempts();
+                gameViewiew.printEnd(gameModelodel.getPlayerNumber());
+                gameViewiew.outOfAttempts(gameModelodel.getAttempts());
+            }
+        }
 
     }
 
