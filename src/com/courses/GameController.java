@@ -1,6 +1,7 @@
 package com.courses;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class GameController {
@@ -12,21 +13,27 @@ public class GameController {
      private String buf;
 
     GameController( GameModel model, GameView view){
+
         gameModel = model;
         gameView = view;
+
     }
 
     public void start(){
+
         gameView.outStartMessage();
         firstDimension();
         readInputNumber();
+
     }
 
     public void firstDimension() {
+
         gameModel.setMin(0);
         gameModel.setMax(100);
         gameModel.insertNumber();
         outDimensions();
+
     }
 
     public void readInputNumber(){
@@ -35,7 +42,7 @@ public class GameController {
                 buf = bufferedReader.readLine();
                 numberSet(buf);
                 checking();
-            } catch (Exception e) {
+            } catch (NumberFormatException | IOException e) {
                 gameView.incorrectInput();
                 gameModel.addAttempts(buf);
                 readInputNumber();

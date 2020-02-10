@@ -1,6 +1,7 @@
 package com.courses;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameView {
 
@@ -32,10 +33,10 @@ public class GameView {
         System.out.println("Correct number is: " + number);
     }
 
-    public void outOfAttempts(ArrayList<String> attempts){
+    public void outOfAttempts(List<String> attempts){
         System.out.println("All attempts is: ");
         for(String attemp : attempts)
-            System.out.print(" " + attemp + " ");
+            System.out.print(" (" + attemp + ") ");
 
     }
 

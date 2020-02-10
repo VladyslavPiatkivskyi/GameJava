@@ -1,8 +1,7 @@
 package com.courses;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameModel {
 
@@ -10,7 +9,7 @@ public class GameModel {
     private int min;
     private int max;
     private int playerNumber;
-    private ArrayList <String> attempts = new ArrayList<>();
+    private List<String> attempts = new ArrayList<>();
 
     public void insertNumber() {
         this.number = rand(min,max);
@@ -81,11 +80,11 @@ public class GameModel {
         this.max = max;
     }
 
-    public ArrayList<String> getAttempts() {
+    public List<String> getAttempts() {
         return attempts;
     }
 
-    public void setAttempts(ArrayList<String> attempts) {
+    public void setAttempts(List<String> attempts) {
         this.attempts = attempts;
     }
 }
