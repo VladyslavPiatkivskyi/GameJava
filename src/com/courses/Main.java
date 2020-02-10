@@ -9,9 +9,7 @@ public class Main {
         GameView gameView = new GameView();
 
         GameController gameController = new GameController(gameModel, gameView);
-        gameController.firstDimension();
-       // System.out.println(gameModel.getNumber());
-        gameController.readInputNumber();
+        gameController.start();
 
 
     }

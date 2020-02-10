@@ -5,23 +5,27 @@ import java.io.InputStreamReader;
 
 public class GameController {
 
-    private GameModel gameModelodel;
-    private GameView gameViewiew;
+    private GameModel gameModel;
+    private GameView gameView;
     public static final int RAND_MAX = 100;
      BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
      private String buf;
 
     GameController( GameModel model, GameView view){
-        gameModelodel = model;
-        gameViewiew = view;
+        gameModel = model;
+        gameView = view;
+    }
+
+    public void start(){
+        gameView.outStartMessage();
+        firstDimension();
+        readInputNumber();
     }
 
     public void firstDimension() {
-
-        gameViewiew.outStartMessage();
-        gameModelodel.setMin(0);
-        gameModelodel.setMax(100);
-        gameModelodel.insertNumber();
+        gameModel.setMin(0);
+        gameModel.setMax(100);
+        gameModel.insertNumber();
         outDimensions();
     }
 
@@ -32,8 +36,8 @@ public class GameController {
                 numberSet(buf);
                 checking();
             } catch (Exception e) {
-                gameViewiew.incorrectInput();
-                gameModelodel.addAttempts(buf);
+                gameView.incorrectInput();
+                gameModel.addAttempts(buf);
                 readInputNumber();
             }
 
@@ -41,29 +45,29 @@ public class GameController {
 
     public void outDimensions(){
 
-        gameViewiew.printDimensions(gameModelodel.getMin(), gameModelodel.getMax());
+        gameView.printDimensions(gameModel.getMin(), gameModel.getMax());
 
     }
 
     public void checking(){
 
-        if(!gameModelodel.checkCorrection()) {
-            gameModelodel.addAttempts();
-            gameViewiew.outOfBound();
+        if(!gameModel.checkCorrection()) {
+            gameModel.addAttempts();
+            gameView.outOfBound();
             readInputNumber();
         }
         else {
-            if (!gameModelodel.checkEquality()) {
-                gameModelodel.addAttempts();
-                gameViewiew.printContinue();
-                gameModelodel.newDimensions();
+            if (!gameModel.checkEquality()) {
+                gameModel.addAttempts();
+                gameView.printContinue();
+                gameModel.newDimensions();
                 outDimensions();
                 readInputNumber();
             }
             else {
-                gameModelodel.addAttempts();
-                gameViewiew.printEnd(gameModelodel.getPlayerNumber());
-                gameViewiew.outOfAttempts(gameModelodel.getAttempts());
+                gameModel.addAttempts();
+                gameView.printEnd(gameModel.getPlayerNumber());
+                gameView.outOfAttempts(gameModel.getAttempts());
             }
         }
 
@@ -71,7 +75,7 @@ public class GameController {
 
     public void numberSet(String reader){
 
-        gameModelodel.setPlayerNumber(Integer.parseInt(String.valueOf(reader)));
+        gameModel.setPlayerNumber(Integer.parseInt(String.valueOf(reader)));
 
     }
 
