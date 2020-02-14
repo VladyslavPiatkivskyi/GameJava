@@ -5,36 +5,24 @@ import java.util.List;
 
 public class GameView {
 
-    public void outStartMessage(){
-        System.out.println("Game started!");
+    public String languageMessage = " Please, select language / Оберіть мову, будь ласка / Пожалуйста, выберите язык :\n 1 - English\n 2 - Українська\n 3 - Русский";
+    public String incorrectInput = " Incorrect input! Input numbers 1, 2 or 3...";
+    public String separator = "-----------------------------------------------------------------------------------------";
+
+    public void printMessage(String message){
+        System.out.println(message);
     }
 
-    public void printDimensions(int min, int max){
-        System.out.println("Guess a number on the scope " + min + " - " + max + " : ");
+    public void printMessage(String message, int number){
+        System.out.println(message + number);
     }
 
-    public void incorrectInput(){
-        System.out.println("Incorrect input, input numbers! ");
+    public void printMessage(String message, int min, int max){
+        System.out.println(message + min + " - " + max + " : ");
     }
 
-    public void outOfBound(){
-        System.out.println("Last number out of needed bounds!");
-        System.out.println("Please, input correctly");
-    }
-
-    public void printContinue(){
-        System.out.println("You are not guess!");
-        System.out.println();
-    }
-
-    public void printEnd(int number){
-        System.out.println("You are guess!");
-        System.out.println();
-        System.out.println("Correct number is: " + number);
-    }
-
-    public void outOfAttempts(List<String> attempts){
-        System.out.println("All attempts is: ");
+    public void outOfAttempts(List<String> attempts, String message){
+        System.out.println(message);
         for(String attemp : attempts)
             System.out.print(" (" + attemp + ") ");
 

@@ -3,14 +3,17 @@ package com.courses;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class GameController {
 
     private GameModel gameModel;
     private GameView gameView;
     public static final int RAND_MAX = 100;
-     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-     private String buf;
+    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    ResourceBundle bundle;
+    private String buf;
 
     GameController( GameModel model, GameView view){
 
@@ -20,10 +23,45 @@ public class GameController {
     }
 
     public void start(){
-
-        gameView.outStartMessage();
+        selectLocale();
+        gameView.printMessage(gameView.separator);
+        gameView.printMessage(bundle.getString("startMessage"));
         firstDimension();
         readInputNumber();
+
+    }
+
+    public void selectLocale()  {
+        gameView.printMessage(gameView.languageMessage);
+        int lan = 0;
+        try {
+            lan = Integer.parseInt(bufferedReader.readLine());
+        } catch (Exception e) {
+            gameView.printMessage(gameView.incorrectInput);
+            selectLocale();
+        }
+        switch (lan){
+            case 1:
+                bundle = ResourceBundle.getBundle("messages");
+                gameView.printMessage(bundle.getString("selectedLanguage"));
+                break;
+            case 2:
+                bundle = ResourceBundle.getBundle("messages", new Locale("ru"));
+                gameView.printMessage(bundle.getString("selectedLanguage"));
+                break;
+
+            case 3:
+                bundle = ResourceBundle.getBundle("messages", new Locale("ua"));
+                gameView.printMessage(bundle.getString("selectedLanguage"));
+                break;
+
+            default:
+                bundle = ResourceBundle.getBundle("messages");
+                gameView.printMessage(bundle.getString("defaultLanguage"));
+                break;
+        }
+
+
 
     }
 
@@ -43,7 +81,7 @@ public class GameController {
                 numberSet(buf);
                 checking();
             } catch (NumberFormatException | IOException e) {
-                gameView.incorrectInput();
+                gameView.printMessage(bundle.getString("incorrectInput"));
                 gameModel.addAttempts(buf);
                 readInputNumber();
             }
@@ -52,7 +90,7 @@ public class GameController {
 
     public void outDimensions(){
 
-        gameView.printDimensions(gameModel.getMin(), gameModel.getMax());
+        gameView.printMessage(bundle.getString("dimensions"), gameModel.getMin(), gameModel.getMax());;
 
     }
 
@@ -60,21 +98,23 @@ public class GameController {
 
         if(!gameModel.checkCorrection()) {
             gameModel.addAttempts();
-            gameView.outOfBound();
+            gameView.printMessage(bundle.getString("outOfBound"));
             readInputNumber();
         }
         else {
             if (!gameModel.checkEquality()) {
                 gameModel.addAttempts();
-                gameView.printContinue();
+                gameView.printMessage(bundle.getString("notGuess"));
                 gameModel.newDimensions();
                 outDimensions();
                 readInputNumber();
             }
             else {
                 gameModel.addAttempts();
-                gameView.printEnd(gameModel.getPlayerNumber());
-                gameView.outOfAttempts(gameModel.getAttempts());
+                gameView.printMessage(bundle.getString("guess"), gameModel.getPlayerNumber());
+                gameView.outOfAttempts(gameModel.getAttempts(), bundle.getString("attempts"));
+
+
             }
         }
 
