@@ -23,6 +23,7 @@ public class GameController {
     }
 
     public void start(){
+
         selectLocale();
         gameView.printMessage(gameView.separator);
         gameView.printMessage(bundle.getString("startMessage"));
@@ -32,8 +33,10 @@ public class GameController {
     }
 
     public void selectLocale()  {
+
         gameView.printMessage(gameView.languageMessage);
         int lan = 0;
+
         try {
             lan = Integer.parseInt(bufferedReader.readLine());
         } catch (Exception e) {
@@ -46,12 +49,12 @@ public class GameController {
                 gameView.printMessage(bundle.getString("selectedLanguage"));
                 break;
             case 2:
-                bundle = ResourceBundle.getBundle("messages", new Locale("ru"));
+                bundle = ResourceBundle.getBundle("messages", new Locale("ua"));
                 gameView.printMessage(bundle.getString("selectedLanguage"));
                 break;
 
             case 3:
-                bundle = ResourceBundle.getBundle("messages", new Locale("ua"));
+                bundle = ResourceBundle.getBundle("messages", new Locale("ru"));
                 gameView.printMessage(bundle.getString("selectedLanguage"));
                 break;
 
@@ -60,8 +63,6 @@ public class GameController {
                 gameView.printMessage(bundle.getString("defaultLanguage"));
                 break;
         }
-
-
 
     }
 
@@ -89,9 +90,7 @@ public class GameController {
     }
 
     public void outDimensions(){
-
         gameView.printMessage(bundle.getString("dimensions"), gameModel.getMin(), gameModel.getMax());;
-
     }
 
     public void checking(){
@@ -121,9 +120,7 @@ public class GameController {
     }
 
     public void numberSet(String reader){
-
         gameModel.setPlayerNumber(Integer.parseInt(String.valueOf(reader)));
-
     }
 
 

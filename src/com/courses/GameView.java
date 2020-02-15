@@ -24,7 +24,7 @@ public class GameView {
     public void outOfAttempts(List<String> attempts, String message){
         System.out.println(message);
         for(String attemp : attempts)
-            System.out.print(" (" + attemp + ") ");
+            System.out.print(" " + attemp + ", ");
 
     }
 
