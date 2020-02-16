@@ -84,13 +84,14 @@ public class GameController {
             } catch (NumberFormatException | IOException e) {
                 gameView.printMessage(bundle.getString("incorrectInput"));
                 gameModel.addAttempts(buf);
+                outDimensions();
                 readInputNumber();
             }
 
     }
 
     public void outDimensions(){
-        gameView.printMessage(bundle.getString("dimensions"), gameModel.getMin(), gameModel.getMax());;
+        gameView.printMessage(bundle.getString("dimensions"), gameModel.getMin(), gameModel.getMax());
     }
 
     public void checking(){
@@ -98,6 +99,7 @@ public class GameController {
         if(!gameModel.checkCorrection()) {
             gameModel.addAttempts();
             gameView.printMessage(bundle.getString("outOfBound"));
+            outDimensions();
             readInputNumber();
         }
         else {
@@ -112,8 +114,6 @@ public class GameController {
                 gameModel.addAttempts();
                 gameView.printMessage(bundle.getString("guess"), gameModel.getPlayerNumber());
                 gameView.outOfAttempts(gameModel.getAttempts(), bundle.getString("attempts"));
-
-
             }
         }
 
@@ -122,6 +122,8 @@ public class GameController {
     public void numberSet(String reader){
         gameModel.setPlayerNumber(Integer.parseInt(String.valueOf(reader)));
     }
+
+
 
 
 
