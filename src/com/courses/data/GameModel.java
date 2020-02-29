@@ -1,4 +1,4 @@
-package com.courses;
+package com.courses.data;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,38 +11,7 @@ public class GameModel {
     private int playerNumber;
     private List<String> attempts = new ArrayList<>();
 
-    public void insertNumber() {
-        this.number = rand(min,max);
-    }
 
-    public int rand(int min, int max){
-        return (int) (Math.random() * (max - min + 1) + min);
-    }
-
-
-    public boolean checkCorrection(){
-        if(playerNumber > max || playerNumber < min) {
-            return false;
-        }
-        else
-            return true;
-    }
-
-    public boolean checkEquality(){
-        if(playerNumber == number) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    public void newDimensions(){
-        if(playerNumber > number)
-            max = playerNumber;
-        else
-            min = playerNumber;
-    }
 
     public void addAttempts(){
         attempts.add(String.valueOf(playerNumber));
@@ -58,6 +27,10 @@ public class GameModel {
 
     public void setPlayerNumber(int playerNumber) {
         this.playerNumber = playerNumber;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     public int getNumber() {

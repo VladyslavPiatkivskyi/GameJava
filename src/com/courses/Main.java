@@ -1,6 +1,10 @@
 package com.courses;
 
 
+import com.courses.controller.GameController;
+import com.courses.data.GameModel;
+import com.courses.view.GameView;
+
 public class Main {
 
     public static void main(String[] args) {
